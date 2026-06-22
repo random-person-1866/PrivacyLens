@@ -1,0 +1,41 @@
+name: Build PrivacyLens Windows EXE
+on:
+  push:
+    tags:
+      - 'v*' # Triggers automatically when you create a release tag (e.g., v1.0.0)
+  workflow_dispatch: # Allows you to manually click the "Run workflow" button for testing
+
+permissions:
+  contents: write # Grants permission to attach the compiled .exe to your Releases page
+
+jobs:
+  build:
+    runs-on: windows-latest # Provisions a genuine Windows Server environment in the cloud
+    steps:
+    - name: Checkout Code Repository
+      uses: actions/checkout@v4
+
+    - name: Set Up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install System Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller pillow psutil
+
+    - name: Compile Standalone Executable
+      run: |
+        pyinstaller --onefile --noconsole --uac-admin privacylens.py
+
+    - name: Package Artifact and Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist/privacylens.exe
+        tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'manual-testing-build' }}
+        name: PrivacyLens Release ${{ github.ref_name }}
+        body: "Official standalone background engine for the PrivacyLens EXIF Metadata Stripper."
+        draft: ${{ github.ref_type != 'tag' }} # Kept as a hidden draft if run manually via the button
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
