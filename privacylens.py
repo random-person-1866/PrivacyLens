@@ -747,7 +747,7 @@ class PrivacyLensApp:
                 if self.config.config.get('first_run', True):
                     self.logger.warning("Setup incomplete; exiting.")
                     return
-            self._register_startup())
+            self._register_startup()
 
         if not _PIL_AVAILABLE:
             self.logger.error("PIL not available; cannot strip images. Aborting.")
@@ -755,14 +755,14 @@ class PrivacyLensApp:
 
         scanner = BackgroundScanner(self.config, self.logger)
         scheduler = BackgroundScheduler(self.config, self.logger, scanner)
-        scheduler.start())
+        scheduler.start()
 
         try:
             while not self._stop_main.is_set():
                 self._stop_main.wait(1.0)
         except KeyboardInterrupt:
             self.logger.info("KeyboardInterrupt — shutting down.")
-            scheduler.stop())
+            scheduler.stop()
 
 
 def _main():
