@@ -306,7 +306,7 @@ class MetadataStripper:
         save_kwargs = {}
 
         if fmt in ('JPEG', 'JPG'):
-            save_kwargs['quality'] = max(1, min(100, int(original_quality))))
+            save_kwargs['quality'] = max(1, min(100, int(original_quality)))
             if img.info.get('subsampling'):
                 save_kwargs['subsampling'] = img.info['subsampling']
             save_kwargs['optimize'] = False
