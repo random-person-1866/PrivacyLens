@@ -27,7 +27,7 @@ jobs:
 
     - name: Compile Standalone Executable
       run: |
-        pyinstaller --clean --onefile --noconsole --uac-admin *.py
+        pyinstaller --clean --onefile --noconsole privacylens.py
 
     - name: Package Artifact and Release
       uses: softprops/action-gh-release@v2
