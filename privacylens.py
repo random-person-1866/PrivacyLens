@@ -375,7 +375,7 @@ class BackgroundScanner:
             self.config.update_last_run(time.time())
             self.logger.info("Scan complete | scanned=%d stripped=%d skipped=%d errors=%d",
                              results['scanned'], results['stripped'],
-                             results['skipped'], results['errors']))
+                             results['skipped'], results['errors'])
             results['reason'] = 'ok'
             return results
         finally:
