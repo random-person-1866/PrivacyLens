@@ -738,7 +738,7 @@ class PrivacyLensApp:
             if self.config.config.get('first_run', True):
                 self.logger.info("First run detected — launching SetupWizard.")
                 try:
-                    SetupWizard(self.config).run())
+                    SetupWizard(self.config).run()
                 except SystemExit:
                     raise
                 except Exception as e:
