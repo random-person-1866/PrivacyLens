@@ -615,7 +615,7 @@ class SetupWizard:
         # Footer
         footer = ttk.Frame(root)
         footer.pack(fill='x', side='bottom', padx=20, pady=(8, 16))
-        ttk.Button(footer, text="Finish Setup", style='TButton', command=self._on_finish).pack(side='right'))
+        ttk.Button(footer, text="Finish Setup", style='TButton', command=self._on_finish).pack(side='right')
         ttk.Button(footer, text="Cancel", style='TExit', command=self._on_cancel).pack(side='right', padx=(0, 8))
 
     def _default_value_for_type(self, sched_type):
