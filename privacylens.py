@@ -690,7 +690,7 @@ class SetupWizard:
                 if hrs <= 0:
                     raise ValueError
             except (ValueError, TypeError):
-                messagebox.showwarning("PrivacyLens", "Custom Hours value must be a positive number."))
+                messagebox.showwarning("PrivacyLens", "Custom Hours value must be a positive number.")
                 return
         cfg = dict(self.config_manager.config or {})
         cfg['first_run'] = False
